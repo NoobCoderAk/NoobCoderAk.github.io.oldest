@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Klara's Birthday</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe6e6;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6699;
+        }
+        .countdown {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nungguin yaa ? hihi</h1>
+        <div class="countdown" id="countdown">00:00:00</div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            const timeRemaining = nextDay - now;
+            const hours = String(Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((timeRemaining % (1000 * 60)) / 1000)).padStart(2, '0');
+
+            document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
+
+            if (timeRemaining <= 0) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html
