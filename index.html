@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Countdown to Klara's Birthday</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -13,110 +13,46 @@
             text-align: center;
             padding: 50px;
         }
-        .heart {
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
             color: #ff6699;
-            font-size: 50px;
+        }
+        .countdown {
+            font-size: 48px;
             margin: 20px 0;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777;
-        }
-        .btn-animated {
-            background-color: #ff6699;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: transform 0.3s;
-        }
-        .btn-animated:hover {
-            transform: scale(1.1);
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .modal-content {
-            animation: slideIn 0.5s ease-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Sekali Lagi Selamat Ulang Tahun, Sayangggggggg !!!</h1>
-        <div class="heart">❤️❤️❤️</div>
-        <p>Selamat bertambah usia Sayangku. Semoga umur yang baru ini menjadi langkah baru yang baik buat ayanggg yaa. Dilancarkan Rezeki, Kuliah, dan kegiatan² ayang setelah ini yaa. selain dari pada itu, terimakasih karena masih mau bertahan bersama sampai hari ini yaa cinta. Semoga harapan² baik kita menjadi kenyataan hehe</p>
-        <div class="footer">
-            Love, Gabek
-        </div>
+        <h1>Nungguin yaa ? hihi</h1>
+        <div class="countdown" id="countdown">00:00:00</div>
     </div>
 
-    <!-- Modal 1 -->
-    <div class="modal fade" id="birthdayModal" tabindex="-1" role="dialog" aria-labelledby="birthdayModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="birthdayModalLabel">A Special Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Selamat Bertambah Usia Yaa Sayanggg ❤️❤️❤️</p>
-                    <video controls class="img-fluid rounded">
-                        <source src="video/video1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#birthdayModal2" data-dismiss="modal">
-                        selanjutnya
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div class="modal fade" id="birthdayModal2" tabindex="-1" role="dialog" aria-labelledby="birthdayModalLabel2" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="birthdayModalLabel2">A Special Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>hehehe ❤️❤️❤️</p>
-                    <video controls class="img-fluid rounded">
-                        <source src="video/video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#birthdayModal').modal('show');
-        });
+        function updateCountdown() {
+            const now = new Date();
+            const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            const timeRemaining = nextDay - now;
+            const hours = String(Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((timeRemaining % (1000 * 60)) / 1000)).padStart(2, '0');
+
+            document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
+
+            if (timeRemaining <= 0) {
+                window.location.href = 'message.html';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
-</html>
+</html
