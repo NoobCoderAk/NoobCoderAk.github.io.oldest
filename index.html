@@ -47,7 +47,7 @@
 
             document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
 
-            if (timeRemaining <= 0) {
+            if (timeRemaining <= timeRemaining) {
                 window.location.href = 'message.html';
             }
         }
